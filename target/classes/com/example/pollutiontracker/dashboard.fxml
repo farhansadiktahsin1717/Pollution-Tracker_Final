@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="800" prefWidth="1400"
+            styleClass="root-pane"
+            stylesheets="@styles.css"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pollutiontracker.DashboardController">
+
+
+    <HBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
+          prefHeight="65" alignment="CENTER_LEFT" spacing="20"
+          styleClass="top-bar">
+
+        <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 0 30;">
+            <Label text="Dashboard" styleClass="city-label" />
+            <Label text="Air Quality Monitoring System" styleClass="sub-label" />
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Label fx:id="dateLabel" text="Monday, 10 Feb 2026" styleClass="date-label" />
+
+        <Button text=" Home" onAction="#handleHome" styleClass="dashboard-btn" />
+
+        <Button text="Logout" onAction="#handleLogout" styleClass="logout-btn" />
+
+        <Region style="-fx-min-width: 30;" />
+    </HBox>
+
+    <!-- ============ SCROLL CONTENT ============ -->
+    <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                fitToWidth="true" hbarPolicy="NEVER"
+                styleClass="main-scroll">
+
+        <VBox spacing="25" style="-fx-padding: 25 40;">
+
+            <!-- ============ ROW 1: GAUGE METER ============ -->
+            <!-- ============ GAUGE SECTION ============ -->
+            <VBox alignment="CENTER" spacing="15" styleClass="gauge-card">
+
+                <Label text=" Air Quality Index Meter" styleClass="section-title" />
+
+                <!-- Gauge Container - CENTERED -->
+                <HBox alignment="CENTER">
+                    <StackPane prefHeight="280" prefWidth="500" alignment="CENTER">
+                        <Pane fx:id="gaugePane" prefHeight="280" prefWidth="500" />
+                    </StackPane>
+                </HBox>
+
+                <!-- AQI Value -->
+                <Label fx:id="aqiValueLabel" text="200" styleClass="gauge-aqi-value" />
+
+                <!-- AQI Status -->
+                <Label fx:id="aqiStatusLabel" text="Unhealthy" styleClass="gauge-aqi-status" />
+
+                <!-- Color Legend -->
+                <HBox alignment="CENTER" spacing="12" style="-fx-padding: 10 0 0 0;">
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label prefWidth="12" prefHeight="12"
+                               style="-fx-background-color: #4ade80; -fx-background-radius: 3;" />
+                        <Label text="Good (0-50)" styleClass="legend-text" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label prefWidth="12" prefHeight="12"
+                               style="-fx-background-color: #fbbf24; -fx-background-radius: 3;" />
+                        <Label text="Moderate (51-100)" styleClass="legend-text" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label prefWidth="12" prefHeight="12"
+                               style="-fx-background-color: #fb923c; -fx-background-radius: 3;" />
+                        <Label text="Sensitive (101-150)" styleClass="legend-text" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label prefWidth="12" prefHeight="12"
+                               style="-fx-background-color: #ff6b6b; -fx-background-radius: 3;" />
+                        <Label text="Unhealthy (151-200)" styleClass="legend-text" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label prefWidth="12" prefHeight="12"
+                               style="-fx-background-color: #c026d3; -fx-background-radius: 3;" />
+                        <Label text="Very Unhealthy (201-300)" styleClass="legend-text" />
+                    </HBox>
+                    <HBox alignment="CENTER" spacing="4">
+                        <Label prefWidth="12" prefHeight="12"
+                               style="-fx-background-color: #991b1b; -fx-background-radius: 3;" />
+                        <Label text="Hazardous (300+)" styleClass="legend-text" />
+                    </HBox>
+                </HBox>
+            </VBox>
+
+            <!-- ============ ROW 2: TWO CARDS ============ -->
+            <HBox spacing="25">
+
+                <!-- LEFT CARD: Health Advisory -->
+                <VBox HBox.hgrow="ALWAYS" spacing="15" styleClass="health-card">
+
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="Health Advisory" styleClass="section-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="healthBadge" text="UNHEALTHY" styleClass="health-badge-red" />
+                    </HBox>
+
+                    <Label prefWidth="999" prefHeight="2" styleClass="card-divider" />
+
+                    <!-- Health Messages -->
+                    <VBox fx:id="healthMessagesBox" spacing="12">
+
+                        <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                            <Label text="1" styleClass="msg-number-red" />
+                            <VBox spacing="3">
+                                <Label text="Avoid Outdoor Activities" styleClass="msg-title" />
+                                <Label text="Everyone should reduce prolonged outdoor exertion. Move activities indoors or reschedule."
+                                       styleClass="msg-desc" wrapText="true" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                            <Label text="2" styleClass="msg-number-yellow" />
+                            <VBox spacing="3">
+                                <Label text="Wear Protective Mask" styleClass="msg-title" />
+                                <Label text="Use N95 or KN95 masks when going outside. Regular masks do not filter fine particles."
+                                       styleClass="msg-desc" wrapText="true" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                            <Label text="3" styleClass="msg-number-purple" />
+                            <VBox spacing="3">
+                                <Label text="Close Windows &amp; Doors" styleClass="msg-title" />
+                                <Label text="Keep windows and doors closed to prevent polluted air from entering your home."
+                                       styleClass="msg-desc" wrapText="true" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                            <Label text="4" styleClass="msg-number-blue" />
+                            <VBox spacing="3">
+                                <Label text="Use Air Purifier" styleClass="msg-title" />
+                                <Label text="Run air purifiers indoors. Keep indoor plants like Money Plant, Aloe Vera for natural purification."
+                                       styleClass="msg-desc" wrapText="true" />
+                            </VBox>
+                        </HBox>
+
+                        <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                            <Label text="5" styleClass="msg-number-green" />
+                            <VBox spacing="3">
+                                <Label text="Stay Hydrated" styleClass="msg-title" />
+                                <Label text="Drink plenty of water and warm fluids. This helps your body flush out toxins absorbed from polluted air."
+                                       styleClass="msg-desc" wrapText="true" />
+                            </VBox>
+                        </HBox>
+
+                    </VBox>
+                </VBox>
+
+                <!-- RIGHT CARD: Tree Estimation -->
+                <VBox HBox.hgrow="ALWAYS" spacing="15" styleClass="tree-card">
+
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="Tree Plantation Estimation" styleClass="section-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+
+                    </HBox>
+
+                    <Label prefWidth="999" prefHeight="2" styleClass="card-divider-green" />
+
+                    <!-- Tree Stats -->
+                    <VBox spacing="15">
+
+                        <!-- Per Person -->
+                        <VBox alignment="CENTER" spacing="8" styleClass="tree-stat-box">
+                            <Label text="  Per Person" styleClass="tree-stat-title" />
+                            <HBox alignment="CENTER" spacing="8">
+                                <Label fx:id="treesPerPersonLabel" text="8" styleClass="tree-big-number" />
+                                <VBox alignment="CENTER_LEFT" spacing="2">
+                                    <Label text="Trees/Year" styleClass="tree-unit" />
+                                    <Label text="should be planted" styleClass="tree-sub" />
+                                </VBox>
+                            </HBox>
+                            <ProgressBar fx:id="personProgress" progress="0.3" prefWidth="300" styleClass="tree-progress" />
+                            <Label text="Current: 2.4 trees avg | Target: 8 trees" styleClass="tree-detail" />
+                        </VBox>
+
+                        <!-- Per Area -->
+                        <VBox alignment="CENTER" spacing="8" styleClass="tree-stat-box">
+                            <Label text=" Per Area (km²)" styleClass="tree-stat-title" />
+                            <HBox alignment="CENTER" spacing="8">
+                                <Label fx:id="treesPerAreaLabel" text="2,500" styleClass="tree-big-number-green" />
+                                <VBox alignment="CENTER_LEFT" spacing="2">
+                                    <Label text="Trees/km²" styleClass="tree-unit" />
+                                    <Label text="required for clean air" styleClass="tree-sub" />
+                                </VBox>
+                            </HBox>
+                            <ProgressBar fx:id="areaProgress" progress="0.45" prefWidth="300" styleClass="tree-progress-green" />
+                            <Label text="Current: 1,125 trees/km² | Target: 2,500 trees/km²" styleClass="tree-detail" />
+                        </VBox>
+
+                        <!-- Total Estimation -->
+                        <VBox alignment="CENTER" spacing="8" styleClass="tree-stat-box-highlight">
+                            <Label text="Dhaka District Estimation" styleClass="tree-stat-title" />
+                            <HBox alignment="CENTER" spacing="8">
+                                <Label fx:id="totalTreesLabel" text="12.5M" styleClass="tree-big-number-gold" />
+                                <VBox alignment="CENTER_LEFT" spacing="2">
+                                    <Label text="Total Trees Needed" styleClass="tree-unit" />
+                                    <Label text="to bring AQI below 50" styleClass="tree-sub" />
+                                </VBox>
+                            </HBox>
+                            <Label text="Based on current pollution level: AQI 200" styleClass="tree-detail" />
+                        </VBox>
+
+                    </VBox>
+                </VBox>
+
+            </HBox>
+
+            <Region prefHeight="20" />
+
+        </VBox>
+    </ScrollPane>
+
+</AnchorPane>

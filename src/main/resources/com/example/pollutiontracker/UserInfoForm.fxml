@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<!-- OUTER = FULL SCREEN BLACK -->
+<StackPane style="-fx-background-color: #0d0d1a;"
+           xmlns="http://javafx.com/javafx/20"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.pollutiontracker.UserInfoController"
+           stylesheets="@styles.css">
+
+    <!-- SCROLLABLE CENTER -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                style="-fx-background: #0d0d1a; -fx-background-color: #0d0d1a;">
+
+        <VBox alignment="CENTER" style="-fx-padding: 30 0;">
+
+            <!-- MAIN CARD -->
+            <VBox prefWidth="550"
+                  maxWidth="550"
+                  spacing="0"
+                  alignment="CENTER"
+                  styleClass="login-card">
+
+                <padding>
+                    <Insets top="30" right="40" bottom="30" left="40"/>
+                </padding>
+
+                <!-- ========== TITLE ========== -->
+                <Label text=" USER INFORMATION"
+                       style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #e0e0ff;">
+                    <VBox.margin>
+                        <Insets bottom="5"/>
+                    </VBox.margin>
+                </Label>
+
+                <Label text="Fill in your details to personalize your dashboard"
+                       style="-fx-text-fill: #6666aa; -fx-font-size: 12;">
+                    <VBox.margin>
+                        <Insets bottom="20"/>
+                    </VBox.margin>
+                </Label>
+
+                <!-- ========== SECTION 1: PERSONAL INFO ========== -->
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="Personal Information"
+                           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #6c63ff;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="STEP 1"
+                           style="-fx-text-fill: #6c63ff; -fx-font-size: 10; -fx-font-weight: bold;
+                                  -fx-background-color: rgba(108,99,255,0.1); -fx-background-radius: 8;
+                                  -fx-padding: 3 10; -fx-border-color: rgba(108,99,255,0.3);
+                                  -fx-border-radius: 8;"/>
+                </HBox>
+
+                <Label prefWidth="999" prefHeight="2"
+                       style="-fx-background-color: linear-gradient(to right, transparent, #6c63ff, transparent);">
+                    <VBox.margin>
+                        <Insets top="8" bottom="15"/>
+                    </VBox.margin>
+                </Label>
+
+                <!-- Full Name -->
+                <Label text="Full Name" styleClass="form-label"/>
+                <TextField fx:id="fullNameField"
+                           maxWidth="470" promptText="Enter your full name"
+                           styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </TextField>
+
+                <!-- Age -->
+                <Label text="Age" styleClass="form-label"/>
+                <TextField fx:id="ageField"
+                           maxWidth="470" promptText="Enter your age"
+                           styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </TextField>
+
+                <!-- Gender -->
+                <Label text="Gender" styleClass="form-label"/>
+                <ComboBox fx:id="genderCombo"
+                          maxWidth="470" promptText="Select Gender"
+                          styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </ComboBox>
+
+                <!-- Phone -->
+                <Label text="Phone Number" styleClass="form-label"/>
+                <TextField fx:id="phoneField"
+                           maxWidth="470" promptText="Enter phone number"
+                           styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="25"/>
+                    </VBox.margin>
+                </TextField>
+
+                <!-- ========== SECTION 2: HEALTH INFO ========== -->
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text=" Health Information"
+                           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #ff6b6b;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="STEP 2"
+                           style="-fx-text-fill: #ff6b6b; -fx-font-size: 10; -fx-font-weight: bold;
+                                  -fx-background-color: rgba(255,107,107,0.1); -fx-background-radius: 8;
+                                  -fx-padding: 3 10; -fx-border-color: rgba(255,107,107,0.3);
+                                  -fx-border-radius: 8;"/>
+                </HBox>
+
+                <Label prefWidth="999" prefHeight="2"
+                       style="-fx-background-color: linear-gradient(to right, transparent, #ff6b6b, transparent);">
+                    <VBox.margin>
+                        <Insets top="8" bottom="15"/>
+                    </VBox.margin>
+                </Label>
+
+                <!-- Pre-existing Conditions -->
+                <Label text="Do you have any pre-existing conditions?" styleClass="form-label"/>
+                <VBox spacing="8" style="-fx-padding: 5 0 0 10;">
+                    <CheckBox fx:id="asthmaCheck" text="Asthma" styleClass="form-check"/>
+                    <CheckBox fx:id="heartCheck" text="Heart Disease" styleClass="form-check"/>
+                    <CheckBox fx:id="lungCheck" text="Lung Disease (COPD)" styleClass="form-check"/>
+                    <CheckBox fx:id="allergyCheck" text="Allergies / Sinusitis" styleClass="form-check"/>
+                    <CheckBox fx:id="diabetesCheck" text="Diabetes" styleClass="form-check"/>
+                    <CheckBox fx:id="noneCheck" text="None of the above" styleClass="form-check"/>
+                </VBox>
+                <VBox.margin>
+                    <Insets bottom="10"/>
+                </VBox.margin>
+
+                <!-- Sensitivity Level -->
+<!--                <Label text="Pollution Sensitivity Level" styleClass="form-label">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets top="10"/>-->
+<!--                    </VBox.margin>-->
+<!--                </Label>-->
+<!--                <ComboBox fx:id="sensitivityCombo"-->
+<!--                          maxWidth="470" promptText="Select sensitivity level"-->
+<!--                          styleClass="input-field">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets bottom="10"/>-->
+<!--                    </VBox.margin>-->
+<!--                </ComboBox>-->
+
+                <!-- Outdoor Activity -->
+                <Label text="Daily Outdoor Activity (hours)" styleClass="form-label"/>
+                <ComboBox fx:id="outdoorCombo"
+                          maxWidth="470" promptText="Select hours spent outdoors"
+                          styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="25"/>
+                    </VBox.margin>
+                </ComboBox>
+
+                <!-- ========== SECTION 3: CITY & AREA INFO ========== -->
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="City &amp; Area Information"
+                           style="-fx-font-size: 16; -fx-font-weight: bold; -fx-text-fill: #4ade80;"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label text="STEP 3"
+                           style="-fx-text-fill: #4ade80; -fx-font-size: 10; -fx-font-weight: bold;
+                                  -fx-background-color: rgba(74,222,128,0.1); -fx-background-radius: 8;
+                                  -fx-padding: 3 10; -fx-border-color: rgba(74,222,128,0.3);
+                                  -fx-border-radius: 8;"/>
+                </HBox>
+
+                <Label prefWidth="999" prefHeight="2"
+                       style="-fx-background-color: linear-gradient(to right, transparent, #4ade80, transparent);">
+                    <VBox.margin>
+                        <Insets top="8" bottom="15"/>
+                    </VBox.margin>
+                </Label>
+
+                <!-- Division -->
+                <Label text="Division" styleClass="form-label"/>
+                <ComboBox fx:id="divisionCombo"
+                          maxWidth="470" promptText="Select Division"
+                          styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </ComboBox>
+
+                <!-- District -->
+                <Label text="District" styleClass="form-label"/>
+                <ComboBox fx:id="districtCombo"
+                          maxWidth="470" promptText="Select District"
+                          styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </ComboBox>
+
+                <!-- City -->
+                <Label text="City / Area Name" styleClass="form-label"/>
+                <TextField fx:id="cityField"
+                           maxWidth="470" promptText="Enter your city or area name"
+                           styleClass="input-field">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </TextField>
+
+                <!-- Area in km² -->
+<!--                <Label text="Area Size (km²)" styleClass="form-label"/>-->
+<!--                <TextField fx:id="areaField"-->
+<!--                           maxWidth="470" promptText="Enter area in square kilometers"-->
+<!--                           styleClass="input-field">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets bottom="10"/>-->
+<!--                    </VBox.margin>-->
+<!--                </TextField>-->
+
+                <!-- Population -->
+<!--                <Label text="Population of Your Area" styleClass="form-label"/>-->
+<!--                <TextField fx:id="populationField"-->
+<!--                           maxWidth="470" promptText="Enter approximate population"-->
+<!--                           styleClass="input-field">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets bottom="10"/>-->
+<!--                    </VBox.margin>-->
+<!--                </TextField>-->
+
+                <!-- Current Trees -->
+<!--                <Label text="Estimated Current Trees in Area" styleClass="form-label"/>-->
+<!--                <TextField fx:id="currentTreesField"-->
+<!--                           maxWidth="470" promptText="Enter estimated number of trees"-->
+<!--                           styleClass="input-field">-->
+<!--                    <VBox.margin>-->
+<!--                        <Insets bottom="25"/>-->
+<!--                    </VBox.margin>-->
+<!--                </TextField>-->
+
+                <!-- ========== SUBMIT BUTTON ========== -->
+                <Button fx:id="submitBtn"
+                        text=" SUBMIT"
+                        styleClass="submit-btn"
+                        maxWidth="350"
+                        onAction="#handleSubmit">
+                    <VBox.margin>
+                        <Insets bottom="10"/>
+                    </VBox.margin>
+                </Button>
+
+                <!-- Message -->
+                <Label fx:id="messageLabel"
+                       style="-fx-text-fill: #ff6b6b; -fx-font-size: 12;"/>
+
+            </VBox>
+        </VBox>
+    </ScrollPane>
+
+</StackPane>

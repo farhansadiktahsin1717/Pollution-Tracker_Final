@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/17.0.12"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.pollutiontracker.wlcController"
+           stylesheets="@styles.css"
+           style="-fx-background-color: #0d0d1a;">
+
+    <Region style="-fx-background-color: radial-gradient(center 25% 40%, radius 55%,
+                   rgba(108,99,255,0.18), transparent);"/>
+    <Region style="-fx-background-color: radial-gradient(center 75% 65%, radius 45%,
+                   rgba(74,222,128,0.08), transparent);"/>
+
+    <VBox alignment="CENTER" spacing="0"
+          maxWidth="900" maxHeight="700"
+          prefWidth="900" prefHeight="700"
+          style="-fx-background-color: rgba(255,255,255,0.05);
+                 -fx-background-radius: 28;
+                 -fx-border-color: rgba(108,99,255,0.28);
+                 -fx-border-width: 1;
+                 -fx-border-radius: 28;
+                 -fx-effect: dropshadow(gaussian, rgba(108,99,255,0.25), 50, 0, 0, 0);">
+
+        <padding>
+            <Insets top="65" right="100" bottom="65" left="100"/>
+        </padding>
+
+        <HBox alignment="CENTER" spacing="14">
+            <VBox spacing="4" alignment="CENTER">
+                <Label text="POLLUTION TRACKER" styleClass="brand-label" />
+                <Label text="Air Quality Monitoring System" styleClass="brand-sub-label" />
+            </VBox>
+        </HBox>
+
+        <Label prefWidth="999" prefHeight="1"
+               style="-fx-background-color: linear-gradient(to right,
+                      transparent, rgba(108,99,255,0.4), transparent);">
+            <VBox.margin>
+                <Insets top="30" bottom="30"/>
+            </VBox.margin>
+        </Label>
+
+        <HBox alignment="CENTER">
+            <HBox alignment="CENTER" spacing="8" styleClass="live-badge">
+                <Label text="LIVE MONITORING ACTIVE" styleClass="live-badge-text" />
+            </HBox>
+            <VBox.margin>
+                <Insets bottom="26"/>
+            </VBox.margin>
+        </HBox>
+
+        <Label text="Welcome to"
+               styleClass="welcome-sub-text">
+            <VBox.margin><Insets bottom="6"/></VBox.margin>
+        </Label>
+
+        <Label text="Smart Pollution"
+               styleClass="welcome-title-white" />
+
+        <Label text="Tracker System"
+               styleClass="welcome-title-purple">
+            <VBox.margin><Insets bottom="16"/></VBox.margin>
+        </Label>
+
+        <Label text="Monitor real-time air quality, get personalized health advisories,&#10;and protect your community — all in one place."
+               wrapText="true" textAlignment="CENTER"
+               styleClass="welcome-desc">
+            <VBox.margin><Insets bottom="42"/></VBox.margin>
+        </Label>
+
+        <HBox alignment="CENTER" spacing="20">
+
+            <Button text="Login"
+                    onAction="#goToLogin"
+                    prefWidth="220" prefHeight="52"
+                    styleClass="welcome-login-btn" />
+
+            <Button text="Sign Up"
+                    onAction="#goToSignUp"
+                    prefWidth="220" prefHeight="52"
+                    styleClass="welcome-signup-btn" />
+
+        </HBox>
+
+        <Label text="Bangladesh Air Quality Initiative · 2026"
+               styleClass="welcome-footer">
+            <VBox.margin><Insets top="30"/></VBox.margin>
+        </Label>
+
+    </VBox>
+
+</StackPane>

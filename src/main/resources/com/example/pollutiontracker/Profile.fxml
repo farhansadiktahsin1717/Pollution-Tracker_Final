@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane fx:id="rootPane" prefHeight="800" prefWidth="1400"
+            styleClass="root-pane"
+            stylesheets="@styles.css"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pollutiontracker.ProfileController">
+
+
+    <HBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
+          prefHeight="65" alignment="CENTER_LEFT" spacing="20"
+          styleClass="top-bar">
+
+        <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 0 30;">
+            <Label text="My Profile" styleClass="city-label" />
+            <Label text="Air Quality Monitoring System" styleClass="sub-label" />
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Label fx:id="dateLabel" text="Monday, 10 Feb 2026" styleClass="date-label" />
+
+        <Button text="Home"       onAction="#handleHome"           styleClass="nav-btn" />
+        <Button text="Message"         onAction="#handleMessage"        styleClass="nav-btn" />
+        <Button text="Tree Estimation" onAction="#handleTreeEstimation" styleClass="nav-btn" />
+<!--        <Button text="Edit Profile"    onAction="#handleEditProfile"    styleClass="nav-btn" />-->
+        <Button text="Logout"          onAction="#handleLogout"         styleClass="logout-btn" />
+
+        <Region style="-fx-min-width: 30;" />
+    </HBox>
+
+
+    <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                fitToWidth="true" hbarPolicy="NEVER"
+                styleClass="main-scroll">
+
+        <VBox spacing="25" style="-fx-padding: 25 40;">
+
+
+            <HBox spacing="25" styleClass="aqi-card" alignment="CENTER_LEFT">
+
+                <VBox spacing="6" HBox.hgrow="ALWAYS">
+                    <Label fx:id="profileNameLabel" text="—"
+                           style="-fx-font-size: 26px; -fx-font-weight: bold;
+                                  -fx-text-fill: #ffffff;" />
+                    <Label fx:id="profileLocationLabel" text="—"
+                           style="-fx-font-size: 14px; -fx-text-fill: #ffffff;" />
+                    <Label fx:id="profilePhoneLabel" text="—"
+                           style="-fx-font-size: 13px; -fx-text-fill: #ffffff;" />
+                    <HBox spacing="10" style="-fx-padding: 6 0 0 0;">
+                        <Label fx:id="profileAgeBadge" text="Age: —"
+                               style="-fx-background-color: rgba(108,99,255,0.2);
+                                      -fx-text-fill: #ffffff; -fx-font-weight: bold;
+                                      -fx-padding: 4 12; -fx-background-radius: 8;" />
+                        <Label fx:id="profileGenderBadge" text="—"
+                               style="-fx-background-color: rgba(74,222,128,0.2);
+                                      -fx-text-fill: #ffffff; -fx-font-weight: bold;
+                                      -fx-padding: 4 12; -fx-background-radius: 8;" />
+                    </HBox>
+                </VBox>
+
+            </HBox>
+
+
+            <HBox spacing="25">
+
+
+                <VBox spacing="15" styleClass="health-card" HBox.hgrow="ALWAYS">
+
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="Personal Information" styleClass="section-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="STEP 1"
+                               style="-fx-text-fill: #ffffff; -fx-font-size: 10;
+                                      -fx-font-weight: bold;
+                                      -fx-background-color: rgba(108,99,255,0.2);
+                                      -fx-background-radius: 8; -fx-padding: 3 10;" />
+                    </HBox>
+
+                    <Label prefWidth="999" prefHeight="2" styleClass="card-divider" />
+
+                    <!-- Full Name -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="140">
+                            <Label text="Full Name" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoNameLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Age -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="140">
+                            <Label text="Age" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoAgeLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Gender -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="140">
+                            <Label text="Gender" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoGenderLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Phone -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="140">
+                            <Label text="Phone Number" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoPhoneLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Outdoor Activity -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="140">
+                            <Label text="Outdoor Activity" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoOutdoorLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                </VBox>
+
+
+                <VBox spacing="15" styleClass="health-card" HBox.hgrow="ALWAYS">
+
+                    <HBox alignment="CENTER_LEFT" spacing="8">
+                        <Label text="Health Information" styleClass="section-title" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label text="STEP 2"
+                               style="-fx-text-fill: #ffffff; -fx-font-size: 10;
+                                      -fx-font-weight: bold;
+                                      -fx-background-color: rgba(255,107,107,0.2);
+                                      -fx-background-radius: 8; -fx-padding: 3 10;" />
+                    </HBox>
+
+                    <Label prefWidth="999" prefHeight="2" styleClass="card-divider" />
+
+                    <!-- Asthma -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="200">
+                            <Label text="Asthma" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoAsthmaLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Heart Disease -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="200">
+                            <Label text="Heart Disease" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoHeartLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Lung Disease -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="200">
+                            <Label text="Lung Disease (COPD)" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoLungLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Allergies -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="200">
+                            <Label text="Allergies / Sinusitis" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoAllergyLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <!-- Diabetes -->
+                    <HBox spacing="10" alignment="CENTER_LEFT" styleClass="health-msg-box">
+                        <VBox prefWidth="200">
+                            <Label text="Diabetes" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoDiabetesLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                </VBox>
+
+            </HBox>
+
+
+            <VBox spacing="15" styleClass="health-card">
+
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text="Location Information" styleClass="section-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label text="STEP 3"
+                           style="-fx-text-fill: #ffffff; -fx-font-size: 10;
+                                  -fx-font-weight: bold;
+                                  -fx-background-color: rgba(74,222,128,0.2);
+                                  -fx-background-radius: 8; -fx-padding: 3 10;" />
+                </HBox>
+
+                <Label prefWidth="999" prefHeight="2" styleClass="card-divider-green" />
+
+                <HBox spacing="25">
+
+                    <HBox spacing="10" alignment="CENTER_LEFT"
+                          styleClass="health-msg-box" HBox.hgrow="ALWAYS">
+                        <VBox prefWidth="120">
+                            <Label text="Division" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoDivisionLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT"
+                          styleClass="health-msg-box" HBox.hgrow="ALWAYS">
+                        <VBox prefWidth="120">
+                            <Label text="District" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoDistrictLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                    <HBox spacing="10" alignment="CENTER_LEFT"
+                          styleClass="health-msg-box" HBox.hgrow="ALWAYS">
+                        <VBox prefWidth="120">
+                            <Label text="City / Area" styleClass="tree-stat-title" />
+                        </VBox>
+                        <Label fx:id="infoCityLabel" text="—"
+                               style="-fx-text-fill: #ffffff;" styleClass="msg-desc" />
+                    </HBox>
+
+                </HBox>
+            </VBox>
+
+            <Region prefHeight="20" />
+
+        </VBox>
+    </ScrollPane>
+</AnchorPane>

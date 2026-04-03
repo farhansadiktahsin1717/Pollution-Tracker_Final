@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane stylesheets="@styles.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pollutiontracker.admin_loginController">
+    <left>
+        <AnchorPane prefHeight="400.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <children>
+                <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@background_user.jpg" />
+                    </image>
+                </ImageView>
+
+                <Label layoutX="199.0" layoutY="90.0" text="Admin Panel" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Bold" size="26.0" />
+                    </font>
+                </Label>
+
+                <Label layoutX="199.0" layoutY="165.0" text="Password" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI" size="14.0" />
+                    </font>
+                </Label>
+
+                <PasswordField fx:id="Pass" layoutX="270.0" layoutY="160.0" prefHeight="31.0" prefWidth="137.0" promptText="Admin Key" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 30; -fx-border-width: 1.5; -fx-text-fill: white; -fx-prompt-text-fill: #e1e1e1; -fx-padding: 5 15;" />
+
+                <Button fx:id="IamAdmin" styleClass="glow-button" layoutX="260.0" layoutY="220.0" mnemonicParsing="false" onAction="#IamAdmin" prefHeight="35.0" prefWidth="80.0" text="Enter" textFill="WHITE">
+                    <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                    </font>
+                    <style>
+                        -fx-background-color: transparent;
+                        -fx-border-color: white;
+                        -fx-border-radius: 30;
+                        -fx-border-width: 2;
+                        -fx-cursor: hand;
+                    </style>
+                </Button>
+
+                <Button fx:id="returnLogin" layoutX="230.0" layoutY="280.0" mnemonicParsing="false" onAction="#returnLogin" text="Not an Admin? Go back" textFill="#e1e1e1" underline="true">
+                    <font>
+                        <Font name="Segoe UI Italic" size="12.0" />
+                    </font>
+                    <style>
+                        -fx-background-color: transparent;
+                        -fx-cursor: hand;
+                    </style>
+                </Button>
+
+            </children>
+        </AnchorPane>
+    </left>
+</BorderPane>

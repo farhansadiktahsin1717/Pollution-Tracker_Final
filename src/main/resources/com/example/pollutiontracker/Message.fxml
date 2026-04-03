@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="800" prefWidth="1400"
+            styleClass="root-pane"
+            stylesheets="@styles.css"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pollutiontracker.MessageController">
+
+
+    <HBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
+          prefHeight="65" alignment="CENTER_LEFT" spacing="20"
+          styleClass="top-bar">
+
+        <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 0 30;">
+            <Label text="Messages" styleClass="city-label" />
+            <Label text="Air Quality Monitoring System" styleClass="sub-label" />
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Label fx:id="dateLabel" text="Monday, 10 Feb 2026" styleClass="date-label" />
+
+
+        <Button text=" Home" onAction="#handleHome" styleClass="dashboard-btn" />
+        <Button text="Tree Estimation" onAction="#handleTreeEstimation" styleClass="nav-btn" />
+        <Button text="Profile" onAction="#handleProfile" styleClass="nav-btn" />
+
+        <Region style="-fx-min-width: 30;" />
+    </HBox>
+
+
+    <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+                AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
+                fitToWidth="true" hbarPolicy="NEVER"
+                styleClass="main-scroll">
+
+        <VBox spacing="25" style="-fx-padding: 25 40;">
+
+
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="Personal Health Advisory Center" styleClass="section-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="aqiBadgeLabel" text="Current AQI: 200 — Unhealthy" styleClass="health-badge-red" />
+            </HBox>
+
+
+
+
+            <VBox fx:id="advisorySection" spacing="15" styleClass="health-card">
+
+                <HBox alignment="CENTER_LEFT" spacing="8">
+                    <Label text=" Your Personalized Health Advisory" styleClass="section-title" />
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Label fx:id="riskLevelBadge" text="HIGH RISK" styleClass="health-badge-red" />
+                </HBox>
+
+                <Label prefWidth="999" prefHeight="2" styleClass="card-divider" />
+
+                <VBox fx:id="advisoryMessagesBox" spacing="12">
+
+                    <!-- Advisory 1 -->
+                    <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                        <Label text="1" styleClass="msg-number-red" />
+                        <VBox spacing="3">
+                            <Label text="Immediate Outdoor Restriction" styleClass="msg-title" />
+                            <Label text="Given your respiratory condition and current AQI of 200, you must avoid all outdoor exposure. Even brief exposure to PM2.5 at this level can trigger acute bronchospasm and reduce lung function by up to 15%."
+                                   styleClass="msg-desc" wrapText="true" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Advisory 2 -->
+                    <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                        <Label text="2" styleClass="msg-number-yellow" />
+                        <VBox spacing="3">
+                            <Label text="Medication Preparedness" styleClass="msg-title" />
+                            <Label text="Keep your prescribed inhaler or bronchodilator within reach at all times today. High pollution days significantly increase the likelihood of acute attacks. Consult your physician if symptoms worsen."
+                                   styleClass="msg-desc" wrapText="true" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Advisory 3 -->
+                    <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                        <Label text="3" styleClass="msg-number-purple" />
+                        <VBox spacing="3">
+                            <Label text="Indoor Air Quality Management" styleClass="msg-title" />
+                            <Label text="Seal all windows and doors. Activate HEPA-grade air purifiers immediately. Avoid cooking with high-heat methods that generate indoor smoke. Maintain indoor humidity between 40–60% to reduce irritant concentration."
+                                   styleClass="msg-desc" wrapText="true" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Advisory 4 -->
+                    <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                        <Label text="4" styleClass="msg-number-blue" />
+                        <VBox spacing="3">
+                            <Label text="Hydration &amp; Nutritional Support" styleClass="msg-title" />
+                            <Label text="Consume 2.5–3 liters of water throughout the day. Foods rich in Vitamin C (citrus, bell peppers) and Omega-3 (fish, walnuts) help reduce inflammation caused by pollutant exposure. Avoid cold beverages."
+                                   styleClass="msg-desc" wrapText="true" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Advisory 5 -->
+                    <HBox spacing="10" alignment="TOP_LEFT" styleClass="health-msg-box">
+                        <Label text="5" styleClass="msg-number-green" />
+                        <VBox spacing="3">
+                            <Label text="Medical Consultation Threshold" styleClass="msg-title" />
+                            <Label text="Seek immediate medical attention if you experience: persistent chest pain, oxygen saturation below 95%, uncontrolled wheezing, or symptoms that do not improve within 30 minutes of using rescue medication."
+                                   styleClass="msg-desc" wrapText="true" />
+                        </VBox>
+                    </HBox>
+
+                </VBox>
+            </VBox>
+
+
+            <VBox spacing="15" styleClass="health-card">
+                <Label text=" Daily Air Quality Tips" styleClass="section-title" />
+                <Label prefWidth="999" prefHeight="2" styleClass="card-divider" />
+
+                <HBox spacing="20">
+
+                    <VBox spacing="8" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
+                        <Label text=" Morning" styleClass="tree-stat-title" />
+                        <Label text="Check AQI before morning walks. If above 100, exercise indoors."
+                               styleClass="msg-desc" wrapText="true" />
+                    </VBox>
+
+                    <VBox spacing="8" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
+                        <Label text="Afternoon" styleClass="tree-stat-title" />
+                        <Label text="Pollution peaks between 12–4 PM. Avoid outdoor commutes during this window."
+                               styleClass="msg-desc" wrapText="true" />
+                    </VBox>
+
+                    <VBox spacing="8" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
+                        <Label text=" Evening" styleClass="tree-stat-title" />
+                        <Label text="Air quality often improves after sunset. Short outdoor walks are safer in the evening."
+                               styleClass="msg-desc" wrapText="true" />
+                    </VBox>
+
+                </HBox>
+            </VBox>
+
+            <Region prefHeight="20" />
+
+        </VBox>
+    </ScrollPane>
+
+</AnchorPane>

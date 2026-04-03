@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!-- OUTER = FULL SCREEN BLACK -->
+
+<StackPane style="-fx-background-color: #0d0d1a;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.pollutiontracker.SignUpController">
+
+    <!-- CENTER CARD -->
+    <VBox alignment="CENTER" maxHeight="520" maxWidth="450" prefWidth="450" spacing="15" styleClass="login-card">
+
+        <padding>
+            <Insets bottom="30" left="35" right="35" top="30" />
+        </padding>
+
+        <!-- Title -->
+        <Label styleClass="sign-title" text="CREATE YOUR ACCOUNT">
+            <VBox.margin>
+                <Insets bottom="10" />
+            </VBox.margin>
+        </Label>
+
+        <!-- Fields -->
+        <TextField fx:id="emailField" maxWidth="350" promptText="Enter Email" styleClass="input-field" />
+
+        <TextField fx:id="usernameField" maxWidth="350" promptText="Enter Username" styleClass="input-field" />
+
+        <PasswordField fx:id="passwordField" maxWidth="350" promptText="Enter Password" styleClass="input-field" />
+
+        <PasswordField fx:id="confirmPasswordField" maxWidth="350" promptText="Confirm Password" styleClass="input-field" />
+
+        <!-- Sign Up Button -->
+        <Button maxWidth="200" onAction="#registerAction" styleClass="login-btn" text="SIGN UP">
+            <VBox.margin>
+                <Insets top="5" />
+            </VBox.margin>
+        </Button>
+
+        <!-- Link -->
+        <Label onDragDetected="#goToLogin" styleClass="link-label" text="Already have an account? Then Login" />
+
+        <!-- Message -->
+        <Label fx:id="messageLabel" style="-fx-text-fill: #ff6b6b;" />
+
+    </VBox>
+
+</StackPane>
