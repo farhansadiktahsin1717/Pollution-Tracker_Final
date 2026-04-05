@@ -9,28 +9,20 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.example.pollutiontracker.TreeEstimationController">
 
-
     <HBox AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
           prefHeight="65" alignment="CENTER_LEFT" spacing="20"
           styleClass="top-bar">
-
         <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 0 30;">
             <Label text="Tree Estimation" styleClass="city-label" />
             <Label text="Air Quality Monitoring System" styleClass="sub-label" />
         </VBox>
-
         <Region HBox.hgrow="ALWAYS" />
-
         <Label fx:id="dateLabel" text="Monday, 10 Feb 2026" styleClass="date-label" />
-
         <Button text=" Home" onAction="#handleHome" styleClass="nav-btn" />
-        <Button text=" Health Message"    onAction="#handleMessage" styleClass="nav-btn" />
-
-        <Button text="Profile"   onAction="#handleProfile" styleClass="nav-btn" />
-
+        <Button text=" Health Message" onAction="#handleMessage" styleClass="nav-btn" />
+        <Button text="Profile" onAction="#handleProfile" styleClass="nav-btn" />
         <Region style="-fx-min-width: 30;" />
     </HBox>
-
 
     <ScrollPane AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
                 AnchorPane.topAnchor="65" AnchorPane.bottomAnchor="0"
@@ -39,145 +31,107 @@
 
         <VBox spacing="25" style="-fx-padding: 25 40;">
 
-
             <HBox alignment="CENTER_LEFT" spacing="10">
-                <Label text=" Tree Plantation Estimation — Dhaka" styleClass="section-title" />
+                <Label fx:id="cityTitleLabel" text=" Tree Plantation Estimation — Dhaka" styleClass="section-title" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Label text="AQI: 200 — Unhealthy" styleClass="health-badge-red" />
+                <Label fx:id="aqiBadge" text="AQI: 200 — Unhealthy" styleClass="health-badge-red" />
             </HBox>
 
-
             <HBox spacing="20">
-
-                <!-- Per Person -->
                 <VBox alignment="CENTER" spacing="10" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
                     <Label text=" Per Person" styleClass="tree-stat-title" />
                     <Label fx:id="treesPerPersonLabel" text="8" styleClass="tree-big-number" />
                     <Label text="Trees / Year" styleClass="tree-unit" />
-                    <ProgressBar fx:id="personProgress" progress="0.30"
-                                 prefWidth="220" styleClass="tree-progress" />
-                    <Label text="Current: 2.4 trees avg" styleClass="tree-detail" />
-                    <Label text="Target: 8 trees/year per person" styleClass="tree-detail" />
+                    <ProgressBar fx:id="personProgress" progress="0.30" prefWidth="220" styleClass="tree-progress" />
+                    <Label text="Target Recommendation" styleClass="tree-detail" />
                 </VBox>
 
-                <!-- Per Area -->
                 <VBox alignment="CENTER" spacing="10" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
                     <Label text="Per Area (km²)" styleClass="tree-stat-title" />
                     <Label fx:id="treesPerAreaLabel" text="2,500" styleClass="tree-big-number-green" />
                     <Label text="Trees / km²" styleClass="tree-unit" />
-                    <ProgressBar fx:id="areaProgress" progress="0.45"
-                                 prefWidth="220" styleClass="tree-progress-green" />
-                    <Label text="Current: 1,125 trees/km²" styleClass="tree-detail" />
-                    <Label text="Target: 2,500 trees/km²" styleClass="tree-detail" />
+                    <ProgressBar fx:id="areaProgress" progress="0.45" prefWidth="220" styleClass="tree-progress-green" />
+                    <Label text="Urban Density Target" styleClass="tree-detail" />
                 </VBox>
 
-                <!-- Total -->
                 <VBox alignment="CENTER" spacing="10" styleClass="tree-stat-box-highlight" HBox.hgrow="ALWAYS">
-                    <Label text=" Dhaka Total" styleClass="tree-stat-title" />
+                    <Label text=" Total Requirement" styleClass="tree-stat-title" />
                     <Label fx:id="totalTreesLabel" text="12.5M" styleClass="tree-big-number-gold" />
                     <Label text="Total Trees Needed" styleClass="tree-unit" />
                     <Label text="to bring AQI below 50" styleClass="tree-sub" />
-                    <Label text="Based on AQI 200 — Unhealthy" styleClass="tree-detail" />
+                    <Label fx:id="aqiSourceDetail" text="Based on AQI 200" styleClass="tree-detail" />
                 </VBox>
-
             </HBox>
 
-
             <VBox spacing="15" styleClass="health-card">
-
                 <Label text=" Why Trees Matter for Air Quality" styleClass="section-title" />
                 <Label prefWidth="999" prefHeight="2" styleClass="card-divider-green" />
-
                 <HBox spacing="20">
-
                     <VBox spacing="8" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
                         <Label text=" CO₂ Absorption" styleClass="tree-stat-title" />
-                        <Label text="A single mature tree absorbs up to 22 kg of CO₂ per year, directly reducing greenhouse gases and improving AQI."
-                               styleClass="msg-desc" wrapText="true" />
+                        <Label text="A single mature tree absorbs up to 22 kg of CO₂ per year." styleClass="msg-desc" wrapText="true" />
                     </VBox>
-
                     <VBox spacing="8" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
                         <Label text="Temperature Control" styleClass="tree-stat-title" />
-                        <Label text="Urban tree canopies reduce local temperature by 2–8°C, which in turn slows the formation of ground-level ozone."
-                               styleClass="msg-desc" wrapText="true" />
+                        <Label text="Urban tree canopies reduce local temperature by 2–8°C." styleClass="msg-desc" wrapText="true" />
                     </VBox>
-
-                    <VBox spacing="8" styleClass="tree-stat-box" HBox.hgrow="ALWAYS">
-                        <Label text=" Particle Filter" styleClass="tree-stat-title" />
-                        <Label text="Tree leaves trap PM2.5 and PM10 particles on their surface, removing them from the air we breathe every day."
-                               styleClass="msg-desc" wrapText="true" />
-                    </VBox>
-
                 </HBox>
             </VBox>
 
-
             <VBox spacing="15" styleClass="tree-card">
-
                 <Label text="Best Trees to Plant in Dhaka" styleClass="section-title" />
                 <Label prefWidth="999" prefHeight="2" styleClass="card-divider-green" />
 
-                <!-- Header Row -->
                 <HBox spacing="0" styleClass="health-msg-box">
-                    <Label text="Tree Name"         prefWidth="220" styleClass="msg-title" />
+                    <Label text="Tree Name" prefWidth="220" styleClass="msg-title" />
                     <Label text="CO₂ Absorbed/Year" prefWidth="200" styleClass="msg-title" />
-                    <Label text="Growth Speed"      prefWidth="160" styleClass="msg-title" />
-                    <Label text="AQI Benefit"       prefWidth="160" styleClass="msg-title" />
-                    <Label text="Recommended"        prefWidth="160" styleClass="msg-title" />
+                    <Label text="Growth Speed" prefWidth="160" styleClass="msg-title" />
+                    <Label text="AQI Benefit" prefWidth="160" styleClass="msg-title" />
+                    <Label text="Recommended" prefWidth="160" styleClass="msg-title" />
                 </HBox>
 
-                <!-- Row 1 -->
                 <HBox spacing="0" styleClass="health-msg-box">
-                    <Label text="Raintree (Shirish)"  prefWidth="220" styleClass="msg-desc" />
-                    <Label text="~48 kg/year"             prefWidth="200" styleClass="msg-desc" />
-                    <Label text="Fast"                    prefWidth="160" styleClass="gas-status-green" />
-                    <Label text="Very High"               prefWidth="160" styleClass="msg-number-green" />
-                    <Label text="Highly Recommended"   prefWidth="160" styleClass="msg-desc" />
+                    <Label text="Raintree (Shirish)" prefWidth="220" styleClass="msg-desc" />
+                    <Label text="~48 kg/year" prefWidth="200" styleClass="msg-desc" />
+                    <Label text="Fast" prefWidth="160" styleClass="gas-status-green" />
+                    <Label text="Very High" prefWidth="160" styleClass="msg-number-green" />
+                    <Label text="Highly Recommended" prefWidth="160" styleClass="msg-desc" />
                 </HBox>
 
-                <!-- Row 2 -->
                 <HBox spacing="0" styleClass="health-msg-box">
-                    <Label text=" Neem (Azadirachta)"  prefWidth="220" styleClass="msg-desc" />
-                    <Label text="~35 kg/year"             prefWidth="200" styleClass="msg-desc" />
-                    <Label text="Moderate"                prefWidth="160" styleClass="gas-status-yellow" />
-                    <Label text="High"                    prefWidth="160" styleClass="msg-number-yellow" />
-                    <Label text=" Recommended"          prefWidth="160" styleClass="msg-desc" />
+                    <Label text=" Neem (Azadirachta)" prefWidth="220" styleClass="msg-desc" />
+                    <Label text="~35 kg/year" prefWidth="200" styleClass="msg-desc" />
+                    <Label text="Moderate" prefWidth="160" styleClass="gas-status-yellow" />
+                    <Label text="High" prefWidth="160" styleClass="msg-number-yellow" />
+                    <Label text=" Recommended" prefWidth="160" styleClass="msg-desc" />
                 </HBox>
 
-                <!-- Row 3 -->
                 <HBox spacing="0" styleClass="health-msg-box">
-                    <Label text=" Bamboo"               prefWidth="220" styleClass="msg-desc" />
-                    <Label text="~12 kg/year"             prefWidth="200" styleClass="msg-desc" />
-                    <Label text="Very Fast"               prefWidth="160" styleClass="gas-status-green" />
-                    <Label text="Moderate"                prefWidth="160" styleClass="msg-number-purple" />
-                    <Label text="Good for Urban"       prefWidth="160" styleClass="msg-desc" />
+                    <Label text=" Bamboo" prefWidth="220" styleClass="msg-desc" />
+                    <Label text="~12 kg/year" prefWidth="200" styleClass="msg-desc" />
+                    <Label text="Very Fast" prefWidth="160" styleClass="gas-status-green" />
+                    <Label text="Moderate" prefWidth="160" styleClass="msg-number-purple" />
+                    <Label text="Good for Urban" prefWidth="160" styleClass="msg-desc" />
                 </HBox>
 
-                <!-- Row 4 -->
                 <HBox spacing="0" styleClass="health-msg-box">
-                    <Label text=" Arjun Tree"           prefWidth="220" styleClass="msg-desc" />
-                    <Label text="~40 kg/year"             prefWidth="200" styleClass="msg-desc" />
-                    <Label text="Moderate"                prefWidth="160" styleClass="gas-status-yellow" />
-                    <Label text="High"                    prefWidth="160" styleClass="msg-number-yellow" />
-                    <Label text="Recommended"          prefWidth="160" styleClass="msg-desc" />
+                    <Label text=" Arjun Tree" prefWidth="220" styleClass="msg-desc" />
+                    <Label text="~40 kg/year" prefWidth="200" styleClass="msg-desc" />
+                    <Label text="Moderate" prefWidth="160" styleClass="gas-status-yellow" />
+                    <Label text="High" prefWidth="160" styleClass="msg-number-yellow" />
+                    <Label text="Recommended" prefWidth="160" styleClass="msg-desc" />
                 </HBox>
 
-                <!-- Row 5 -->
                 <HBox spacing="0" styleClass="health-msg-box">
-                    <Label text=" Krishnachura"         prefWidth="220" styleClass="msg-desc" />
-                    <Label text="~22 kg/year"             prefWidth="200" styleClass="msg-desc" />
-                    <Label text="Fast"                    prefWidth="160" styleClass="gas-status-green" />
-                    <Label text="Moderate"                prefWidth="160" styleClass="msg-number-purple" />
-                    <Label text="Good for Streets"     prefWidth="160" styleClass="msg-desc" />
+                    <Label text=" Krishnachura" prefWidth="220" styleClass="msg-desc" />
+                    <Label text="~22 kg/year" prefWidth="200" styleClass="msg-desc" />
+                    <Label text="Fast" prefWidth="160" styleClass="gas-status-green" />
+                    <Label text="Moderate" prefWidth="160" styleClass="msg-number-purple" />
+                    <Label text="Good for Streets" prefWidth="160" styleClass="msg-desc" />
                 </HBox>
-
             </VBox>
 
-
-
             <Region prefHeight="20" />
-
         </VBox>
     </ScrollPane>
-
 </AnchorPane>

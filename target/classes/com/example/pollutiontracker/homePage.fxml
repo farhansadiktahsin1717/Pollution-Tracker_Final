@@ -14,7 +14,7 @@
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0">
 
         <VBox alignment="CENTER_LEFT" spacing="2" style="-fx-padding: 0 0 0 30;">
-            <Label styleClass="city-label" text="DHAKA" />
+            <Label fx:id="cityLabel" styleClass="city-label" text="City" />
             <Label styleClass="sub-label" text="Bangladesh" />
         </VBox>
 

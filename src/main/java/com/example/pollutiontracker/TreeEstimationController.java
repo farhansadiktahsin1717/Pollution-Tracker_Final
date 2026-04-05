@@ -1,5 +1,11 @@
 package com.example.pollutiontracker;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import org.json.JSONObject;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -16,9 +22,11 @@ public class TreeEstimationController extends BaseController {
     @FXML private Label treesPerAreaLabel;
     @FXML private Label totalTreesLabel;
     @FXML private Label cityTitleLabel;
-    @FXML private Label aqiBadge; // Added to make the badge dynamic
+    @FXML private Label aqiBadge;
     @FXML private ProgressBar personProgress;
     @FXML private ProgressBar areaProgress;
+
+    private String APICITY;
 
     @Override
     protected Node getRootNode() {
@@ -26,7 +34,7 @@ public class TreeEstimationController extends BaseController {
     }
 
     private static class CityData {
-        double area; // km²
+        double area;
         int population;
         CityData(double area, int population) {
             this.area = area;
@@ -49,44 +57,58 @@ public class TreeEstimationController extends BaseController {
 
     @FXML
     public void initialize() {
-        // 1. Set Date
-        LocalDate today = LocalDate.now();
-        dateLabel.setText(today.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy")));
 
-        // 2. Get Session Data
-        String city = UserSession.getCity();
-        int aqi = UserSession.getAqi();
-
-        System.out.println(city);
-        System.out.println(city);
-
-        // Fallback for null/empty city
-        if (city == null || city.isEmpty() || !cityMap.containsKey(city)) {
-            city = "Dhaka";
+        Integer userId = UserSession.getCurrentUserId();
+        APICITY = "Dhaka";
+        if (userId != null) {
+            UserDAO.UserProfile profile = UserDAO.getUserProfile(userId);
+            if (profile != null && profile.getDistrict() != null) {
+                APICITY = profile.getDistrict();
+            }
         }
 
-        CityData data = cityMap.get(city);
 
-        // 3. Dynamic UI Updates
-        cityTitleLabel.setText("Tree Plantation Estimation — " + city);
+        LocalDate today = LocalDate.now();
+        dateLabel.setText(today.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy")));
+        cityTitleLabel.setText("Tree Plantation Estimation — " + APICITY);
+        new Thread(this::fetchAirQualityData).start();
+    }
+
+    private void fetchAirQualityData() {
+        String apiKey = "62221ceb05521152606ea8e22e5779d3639a73f2";
+        String url = "https://api.waqi.info/feed/" + APICITY + "/?token=" + apiKey;
+
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(url))
+                .GET()
+                .build();
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            JSONObject json = new JSONObject(response.body());
+
+            if (json.getString("status").equals("ok")) {
+                int aqi = json.getJSONObject("data").getInt("aqi");
+                Platform.runLater(() -> performCalculations(aqi));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Platform.runLater(() -> aqiBadge.setText("AQI: N/A"));
+        }
+    }
+
+    private void performCalculations(int aqi) {
         updateAqiBadge(aqi);
-
-        // 4. Calculations
-        // Target: 1 tree for every 25 AQI points (e.g., AQI 200 needs 8 trees)
+        CityData data = cityMap.getOrDefault(APICITY, cityMap.get("Dhaka"));
         int targetTreesPerPerson = Math.max(2, aqi / 25);
         double treesPerAreaTarget = (double) data.population / data.area;
         double totalTreesNeeded = (double) targetTreesPerPerson * data.population;
-
-        // 5. Update Labels
         treesPerPersonLabel.setText(String.valueOf(targetTreesPerPerson));
         treesPerAreaLabel.setText(String.format("%,.0f", treesPerAreaTarget));
         totalTreesLabel.setText(String.format("%.1fM", totalTreesNeeded / 1_000_000));
-
-        // 6. Dynamic Progress (Simulation of current vs target)
-        // Assuming current average is 2.4 trees per person for logic
         double currentAvg = 2.4;
         personProgress.setProgress(Math.min(1.0, currentAvg / targetTreesPerPerson));
-        areaProgress.setProgress(0.4); // Sample static progress for area
+        areaProgress.setProgress(0.4);
     }
 
     private void updateAqiBadge(int aqi) {
@@ -96,9 +118,8 @@ public class TreeEstimationController extends BaseController {
         else if (aqi <= 100) { status = "Moderate"; style = "health-badge-yellow"; }
         else if (aqi <= 200) { status = "Unhealthy"; style = "health-badge-red"; }
         else { status = "Hazardous"; style = "health-badge-purple"; }
-
         aqiBadge.setText("AQI: " + aqi + " — " + status);
-        aqiBadge.getStyleClass().removeAll("health-badge-red", "health-badge-green", "health-badge-yellow");
+        aqiBadge.getStyleClass().removeAll("health-badge-red", "health-badge-green", "health-badge-yellow", "health-badge-purple");
         aqiBadge.getStyleClass().add(style);
     }
 
