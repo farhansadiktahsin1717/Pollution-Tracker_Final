@@ -23,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 
 public class HomePageController extends BaseController {
 
+    public  String cCity;
     @FXML private BarChart<String, Number> weeklyChart;
     @FXML private CategoryAxis xAxis;
     @FXML private NumberAxis yAxis;
@@ -33,22 +34,49 @@ public class HomePageController extends BaseController {
     @FXML private Label no2Label;
     @FXML private Label nh3Label;
     @FXML private Label so2Label;
+    @FXML
+    private Label cityLabel;
+
 
 
     @Override
     protected Node getRootNode() {
         return aqiValueLabel;
     }
+    String APICITY;
 
 
     @FXML
     public void initialize() {
+
+        Integer userId = UserSession.getCurrentUserId();
+        String city = null;
+
+        if (userId != null) {
+            UserDAO.UserProfile profile = UserDAO.getUserProfile(userId);
+
+            if (profile != null) {
+                city = profile.getDistrict();
+            }
+        }
+
+
+        if (city == null || city.isBlank()) {
+            city = " ";
+            cityLabel.setText("Unknown City");
+        } else {
+            cityLabel.setText(city);
+        }
+
+        APICITY = city;
+
+        // date
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter =
                 DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy");
         dateLabel.setText(today.format(formatter));
 
-        // Fetch API data on background thread
+        // fetch API
         new Thread(() -> fetchAirQualityData()).start();
     }
 
@@ -56,7 +84,8 @@ public class HomePageController extends BaseController {
     private void fetchAirQualityData() {
 
         String apiKey = "62221ceb05521152606ea8e22e5779d3639a73f2";
-        String city   = "dhaka";
+        //String city   = "dhaka";
+        String city = APICITY;
         String url    = "https://api.waqi.info/feed/" + city + "/?token=" + apiKey;
 
         HttpClient  client  = HttpClient.newHttpClient();
@@ -82,6 +111,12 @@ public class HomePageController extends BaseController {
 
                     aqiValueLabel.setText(String.valueOf(aqi));
                     aqiStatusLabel.setText(getAqiStatus(aqi));
+                    // Inside fetchAirQualityData -> Platform.runLater
+                    String normalizedCity = APICITY.substring(0, 1).toUpperCase() + APICITY.substring(1).toLowerCase();
+                    UserSession.setCity(normalizedCity);
+                    UserSession.setAqi(aqi);
+                    System.out.println(normalizedCity);
+                    System.out.println(aqi);
 
                     if (iaqi.has("co"))
                         co2Label.setText(String.valueOf(

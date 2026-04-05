@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class ProfileController extends BaseController {
+    public static String currentCity;
 
     @FXML private Label dateLabel;
     @FXML private Label profileNameLabel;
@@ -59,6 +60,8 @@ public class ProfileController extends BaseController {
             applyMissingProfileState();
             return;
         }
+        currentCity = profile.getDistrict();
+        //System.out.println(currentCity);
 
         String displayName = firstNonBlank(profile.getFullName(), profile.getUsername(), "User");
         String location = joinNonBlank(", ", profile.getCity(), profile.getDistrict(), profile.getDivision());
