@@ -15,6 +15,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+class UserProfileException extends Exception {
+    public UserProfileException(String message) {
+        super(message);
+    }
+}
+
 public class TreeEstimationController extends BaseController {
 
     @FXML private Label dateLabel;
@@ -60,13 +66,26 @@ public class TreeEstimationController extends BaseController {
 
         Integer userId = UserSession.getCurrentUserId();
         APICITY = "Dhaka";
-        if (userId != null) {
-            UserDAO.UserProfile profile = UserDAO.getUserProfile(userId);
-            if (profile != null && profile.getDistrict() != null) {
-                APICITY = profile.getDistrict();
-            }
+        try {
+        if (userId == null) {
+            throw new UserProfileException("User ID is null");
         }
-
+    
+        UserDAO.UserProfile profile = UserDAO.getUserProfile(userId);
+    
+        if (profile == null) {
+            throw new UserProfileException("User profile not found");
+        }
+    
+        if (profile.getDistrict() == null) {
+            throw new UserProfileException("District is missing in profile");
+        }
+    
+        APICITY = profile.getDistrict();
+    
+    } catch (UserProfileException e) {
+        System.out.println("Error: " + e.getMessage());
+    }
 
         LocalDate today = LocalDate.now();
         dateLabel.setText(today.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy")));
